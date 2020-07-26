@@ -12,8 +12,10 @@
         <div class="nav-side">
                     <div class="nav-side-bar">
                         <div class="nav-side-bar-image">
-                            <div class="side-img">
-                                <img src="../../images/logo.png" alt="logo">
+                            <div>
+                                <div class="side-img">
+                                    <img src="../../images/logo.png" alt="logo">
+                                </div>
                             </div>
                             <div class="side-text">
                                 <p class="" @click="getEmployee()">All Employee</p>
@@ -23,14 +25,14 @@
                             <p class="">Project</p>
                                 <ul>
                                     <li  v-for="data in employeeName" :key="employeeName.id">
-                                      <nuxt-link :to="{path:'/employee/' + data.id}">  
+                                      <a :to="{path:'/employee/' + data.id}">  
                                             <div class="side-icon">
                                                  <p>{{data.abbr}} </p>
                                             </div>
                                             <div class="side-name" >
                                                 <p>{{data.name}}</p>
                                             </div>
-                                     </nuxt-link>
+                                     </a>
                                     </li>
                                 </ul>
                             <a href="#" class="btn2">add Project</a>
@@ -103,8 +105,10 @@
 </div>
 </template>
 <script>
+
 import  Navbar from  '@/components/Navbar';
     export default {
+        middleware: 'guest',
         components:{
             Navbar,
             

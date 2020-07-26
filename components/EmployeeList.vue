@@ -12,6 +12,7 @@
                         </div>
                         <div class="nav-side-bar-notice">
                             <p class="">Project</p>
+                            {{authenticated}}
                                 <ul>
                                     <li>
                                         <div class="side-icon">
