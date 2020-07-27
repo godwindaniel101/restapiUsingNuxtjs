@@ -309,3 +309,112 @@
   width:100%;
   
 }
+.employee_header{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+  align-items: center;
+  /* border:1px solid green; */
+  width:100%;
+  /* height:20px; */
+}
+.employee_header .tag-wrapper{
+font-size: 25px;
+font-weight:700;
+}
+.form_wrapper_unit{
+  box-sizing: border-box;
+  position: relative;
+  border-top: 1px solid #ced4da;
+  border-bottom: 1px solid #ced4da;
+  padding: 20px 30px !important;
+  height:80vh;
+  margin-bottom:5vh;
+  overflow-y: scroll;
+}
+.refresh_class{
+  /* border:1px solid red; */
+  width:40px;
+  height:40px;
+  position:absolute;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  top:0;
+  right:0;
+  z-index:10;
+}
+.refresh_class svg{
+  cursor: pointer;
+}
+.form_wrapper_unit form{
+  position:relative;
+}
+#style-2::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#style-2::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+#style-2::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: greenyellow;
+}
+.form_navigator{
+ 
+  width:100%;
+}
+.form_navigator span{
+ font-size:12px;
+ color:red;
+}
+.form-case {
+  display: block;
+  width: 100%;
+  height: calc(1.3em + 0.75rem + 1px);
+  padding: 0.175rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-case:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem yellowgreen ;
+}
+.zero_class{
+  padding:5px 10px!important;
+}
+.radio_wrap{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.radio_item{
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items: center;
+
+}
+.sex_class{
+  margin:0 !important;
+}

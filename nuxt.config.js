@@ -56,11 +56,12 @@ export default {
   },
   redirect:{
     login:'/dashboard',
-    home:'/dashboard'
+    home:'/'
   },
   plugins:[
     '@/plugins/auth.js',
     '@/plugins/app.js',
+    '@/plugins/sweetalert.js',
   ]
 },
   buildModules: [
@@ -70,7 +71,8 @@ export default {
   */
  modules: [
   '@nuxtjs/axios',
-  '@nuxtjs/auth'
+  '@nuxtjs/auth',
+  'vue-sweetalert2/nuxt'
 ],
 
 axios: {
@@ -86,6 +88,7 @@ axios: {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
-    }
+    },
+    transpile:['vue-sweetalert2']
   }
 }
