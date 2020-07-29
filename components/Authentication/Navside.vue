@@ -29,23 +29,18 @@
             <div class="li-container">
               <div class="li-icon">
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-clipboard-check"
                   width="28"
                   height="28"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="#fff"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  role="img"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#fff"
+                  viewBox="0 0 384 512"
+                  class="svg-inline--fa fa-clipboard-list-check fa-w-12 fa-3x"
                 >
-                  <path stroke="none" d="M0 0h24v24H0z" />
                   <path
-                    d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2"
-                  />
-                  <rect x="9" y="3" width="6" height="4" rx="2" />
-                  <path d="M9 14l2 2l4 -4" />
+                    d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zM65.6 209.4l12.7-12.6c2.1-2.1 5.5-2.1 7.6 0l20.6 20.8 47.6-47.2c2.1-2.1 5.5-2.1 7.6 0l12.6 12.7c2.1 2.1 2.1 5.5 0 7.6l-64.2 63.6c-2.1 2.1-5.5 2.1-7.6 0L65.6 217c-2.1-2.1-2.1-5.5 0-7.6zM96 392c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zm224-16c0 4.4-3.6 8-8 8H168c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16zm0-128c0 4.4-4.3 8-9.6 8H154.1l32.3-32h124c5.3 0 9.6 3.6 9.6 8v16z"
+                    class=""
+                  ></path>
                 </svg>
               </div>
               <div class="li-text">Project</div>
@@ -55,21 +50,17 @@
             <div class="li-container">
               <div class="li-icon">
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-user-plus"
                   width="28"
                   height="28"
-                  viewBox="0 0 24 24"
-                  stroke-width="1"
-                  stroke="#fff"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 512"
+                  class="svg-inline--fa fa-user-plus fa-w-20 fa-3x"
                 >
-                  <path stroke="none" d="M0 0h24v24H0z" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                  <path d="M16 11h6m-3 -3v6" />
+                  <path
+                    fill="white"
+                    d="M624 208h-64v-64c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v64h-64c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h64v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-64h64c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm-400 48c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"
+                    class=""
+                  ></path>
                 </svg>
               </div>
               <div class="li-text">Employee</div>
@@ -175,6 +166,6 @@
 <script>
 export default {
   methods: {},
-  created() {},
+  created() {}
 };
 </script>

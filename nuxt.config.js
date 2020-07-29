@@ -50,14 +50,11 @@ export default {
         login: { url: 'auth/login', method: 'post', propertyName: 'token' },
         getEmployee: { url: 'auth/employee', method: 'get', propertyName: 'token' },
         logout: { url: 'auth/logout', method: 'get' },
-        user: { url: 'auth/user', method: 'get', propertyName: 'name' }
+        user: { url: 'auth/user', method: 'get', propertyName: 'user_role' }
       },
     }
   },
-  redirect:{
-    login:'/dashboard',
-    home:'/'
-  },
+  redirect:false,
   plugins:[
     '@/plugins/auth.js',
     '@/plugins/app.js',

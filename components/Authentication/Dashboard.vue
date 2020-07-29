@@ -19,7 +19,7 @@ components:{
 },
 data(){
 return{
-    foldMode:false,
+    foldMode:true,
 }
 },
     middleware:'auth',
