@@ -2,9 +2,8 @@
   <index />
 </template>
 <script>
-import Index from '~/components/Authentication/Admin/Index.vue'
+import Index from '~/components/Authentication/User/Index.vue'
 export default {
-  middleware:'dashboard',
   components:{
     Index
   }

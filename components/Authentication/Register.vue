@@ -80,8 +80,13 @@ export default {
     async userRegister() {
       try {
         await this.$axios.post("/auth/register", this.form);
-        await this.$auth.login({ data: this.form });
-        this.$router.push({ name: "dashboard" });
+        await this.$auth.loginWith('local',{ data: this.form });
+        var user_id = this.$store.state.auth.user.user_role;
+        if(user_id == 3){
+            this.$router.push({ name: "dashboard" });
+        }else{
+          this.$router.push({ name: "panel" });
+        }
       } catch (e) {}
     },
     godashboard() {

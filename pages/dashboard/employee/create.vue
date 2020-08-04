@@ -2,7 +2,7 @@
   <employeeform />
 </template>
 <script>
-import Employeeform from '~/components/EmployeeComponent/employeeForm.vue'
+import Employeeform from '~/components/FormsComponent/employeeForm.vue'
 export default {
   components:{
     Employeeform

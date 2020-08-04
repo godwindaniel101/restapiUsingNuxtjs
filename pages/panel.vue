@@ -1,16 +1,16 @@
 <template>
   <div class="container-fluid" style="padding:0;margin:0;height:100vh;overflow:hidden">
-      <Dashboard />
+      <Panel />
   </div>
 </template>
 
 <script>
-import Dashboard from '~/components/Authentication/Admin/Dashboard.vue'
+import Panel from '~/components/Authentication/User/Panel.vue'
 
 export default {
   middleware:'auth',
   components: {
-    Dashboard,
+    Panel,
   }
 }
 </script>

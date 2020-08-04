@@ -5,12 +5,12 @@
       <img src="~assets/images/preloader.gif" />
     </div>           
   </div>
-  <employeeform :formRecord="form" :triggerEdit="true" v-show="!preloader" />
+  <taskform :formRecord="form" :triggerEdit="true" v-show="!preloader" />
 </div>
   
 </template>
 <script>
-import Employeeform from "~/components/FormsComponent/employeeForm.vue";
+import taskform from '~/components/FormsComponent/taskForm.vue'
 export default {
   data() {
     return {
@@ -19,23 +19,24 @@ export default {
     };
   },
   components: {
-    Employeeform
+    taskform
   },
   methods: {
-    async getEmployeeRecord() {
+    async getTaskRecord() {
       var id = this.$route.params.id;
       try {
         await this.$axios
-          .get("auth/getEmployeeRecord/" + id)
+          .get("auth/getTaskRecord/" + id)
           .then(({ data }) => {
             this.form = data;
+            console.log(data);
             this.preloader = false;
           });
       } catch (e) {}
     }
   },
   mounted() {
-    this.getEmployeeRecord();
+    this.getTaskRecord();
   }
 };
 </script>

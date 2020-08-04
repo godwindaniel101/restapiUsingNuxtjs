@@ -95,11 +95,7 @@
   </div>
 </template>
 <script>
-import Index from "~/components/EmployeeComponent/index.vue";
 export default {
-  components: {
-    Index
-  },
   data() {
     return {
       preloader: true,

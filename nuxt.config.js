@@ -28,7 +28,7 @@ export default {
     '~/assets/css/main.css'
   ],
   router:{
-    middleware:['clearValidationErrors' ,'auth' ,'guest']
+    middleware:['clearValidationErrors' ,'auth' ,'guest','accesslevel','dashboard']
   },
   /*
   ** Plugins to load before mounting the App
@@ -48,9 +48,8 @@ export default {
     local: {
       endpoints: {
         login: { url: 'auth/login', method: 'post', propertyName: 'token' },
-        getEmployee: { url: 'auth/employee', method: 'get', propertyName: 'token' },
+        user: { url: 'auth/user', method: 'get', propertyName: 'data' },
         logout: { url: 'auth/logout', method: 'get' },
-        user: { url: 'auth/user', method: 'get', propertyName: 'user_role' }
       },
     }
   },

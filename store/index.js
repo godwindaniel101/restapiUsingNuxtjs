@@ -11,5 +11,5 @@ export const getters = {
         busy:false,
         loggednIn:false,
         strategy:"local",
-        user:false
+        user:[],
         });

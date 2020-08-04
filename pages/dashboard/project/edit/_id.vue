@@ -10,7 +10,7 @@
   
 </template>
 <script>
-import Projectform from '~/components/ProjectComponent/projectForm.vue'
+import Projectform from '~/components/FormsComponent/projectForm.vue'
 export default {
   data() {
     return {
