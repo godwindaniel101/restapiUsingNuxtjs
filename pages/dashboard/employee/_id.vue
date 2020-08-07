@@ -1,52 +1,46 @@
 <template>
-  <div class="container-fluid" style="padding:0;">
-    <div class="row">
-      <div class="col-lg-10 offset-lg-1 wrap_my_form">
-        <div class="employee_header">
-          <div class="back_nav">
-            <nuxt-link to="/dashboard/employee">
-              <svg
-                width="30"
-                height="30"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-                class="svg-inline--fa fa-arrow-left fa-w-14 fa-3x"
-              >
-                <path
-                  fill="#000"
-                  d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"
-                ></path>
-              </svg>
-            </nuxt-link>
-          </div>
-          <div class="tag-wrapper">
-            <p>
-              Employee Detail
-            </p>
+  <div class="container-fx">
+      <div class="_sub_project">
+      <nuxt-link to="/dashboard/employee" class="back_icon" tag="div">
+        <div class="_back_nav">
+          <div style="auto 20px">
+            <svg
+              width="20"
+              height="20"
+              stroke-width="1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              class="svg-inline--fa fa-arrow-left fa-w-14 fa-3x"
+            >
+              <path
+                fill="#000"
+                d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"
+              />
+            </svg>
           </div>
         </div>
-
-        <div class="  col-lg-12 form_wrapper_unit" id="style-2">
-          <div class="preloader" v-show="preloader">
-            <div class="image_wrap">
-              <img src="~assets/images/preloader.gif" />
-            </div>
-          </div>
-          <div class="row" v-if="record != null"  v-show="!preloader">
-            <div class="col-lg-4">
-              <div class="profile_side">
-                <div class="profile_side_head">
-                  <div class="profile_pic_wrap"></div>
-                  <div class="profile_name">
-                    <p>
+      </nuxt-link>
+       <div class="_back_nav_text">
+        <span>Employee Profile</span>
+      </div>
+    </div>
+          <div class="_profile_wrap" v-if="record != null" >
+            <div class="_profile_left">
+              <div class="_profile_side">
+                <div class="_profile_side_head">
+                  <div class="_profile_pic_wrap">
+                    <img src="~assets/images/default.png" alt="" class="">
+                  </div>
+                  <div class="_profile_name">
+                    <span>
                       {{ record.first_name }} {{ record.middle_name }}
                       {{ record.last_name }}
-                    </p>
+                    </span>
                     <p></p>
                   </div>
                 </div>
-                <div class="profile_side_body">
-                  <table class="profie_side_table">
+                <div class="_profile_side_body">
+                  <table class="_profie_side_table">
                     <tr>
                       <td>
                         Sex
@@ -91,9 +85,9 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-8">
-              <div class="profile_center">
-                <table class="profile_center_1">
+            <div class="_profile_right">
+              <div class="_profile_center">
+                <table class="_profile_center_1">
                   <tr>
                     <td>
                       City
@@ -118,9 +112,6 @@
                       {{ record.country }}
                     </td>
                   </tr>
-                </table>
-                <hr class="profile_center_hr">
-                <table class="profile_center_1">
                    <tr>
                     <td>
                       Phone No
@@ -145,9 +136,6 @@
                       {{ record.alt_phone_no ? record.email : "" }}
                     </td>
                   </tr>
-                   </table>
-                <hr class="profile_center_hr">
-                <table class="profile_center_1">
                   <tr>
                     <td>
                       Department
@@ -193,9 +181,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 </template>
 <script>
 export default {
@@ -207,13 +192,14 @@ export default {
   },
   methods: {
     async getEmployeeRecord() {
+    this.$nuxt.$emit("changPreloader", true);
       var id = this.$route.params.id;
       try {
         await this.$axios
           .get("auth/getEmployeeRecord/" + id)
           .then(({ data }) => {
             this.record = data;
-            this.preloader = false;
+    this.$nuxt.$emit("changPreloader", false);
           });
       } catch (e) {}
     }

@@ -1,29 +1,34 @@
 <template>
-
-    <div class="wide_view">
-      <!-- <div class="dashboard_sidecover"> </div> -->
-    <div class="dashboard_sidetop">
-      <div class="sidetop_up">
-        <p>
-        <span class="t_icon t_green">
-          V
-        </span>
-        <span class="t_icon t_blue">
-          P
-        </span>
-        <span class="t_icon t_red">
-          M
-        </span>
-        </p>
-      </div>
-      <div class="sidetop_middle">
-        <ul>
-          <nuxt-link to="/dashboard" tag="li" exact>
-            <div class="li-container">
-              <div class="li-icon">
+<div class="cover_Screen">
+  <div class="cover_control">
+     <div class="mobile_control_iconx">
+          <svg
+            @click="foldAction"
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-align-justified"
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            stroke-width="1.2"
+            stroke="white"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="white" d="M0 0h24v24H0z" />
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="18" x2="20" y2="18" />
+          </svg>
+        </div>
+  </div>
+  <ul >
+          <nuxt-link to="/dashboard" tag="li" exact >
+            <div class="li-mobile"   @click="foldAction">
+              <div class="li-m-icon">
                 <svg 
-                  width="30"
-                  height="30"
+                  width="25"
+                  height="25"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 640 512"
                   class="svg-inline--fa fa-tachometer-alt fa-w-18 fa-3x"
@@ -35,15 +40,15 @@
                   />
                 </svg>
               </div>
-              <div class="li-text">Dashboard</div>
+              <div class="li-m-text">Dashboard</div>
             </div>
           </nuxt-link>
           <nuxt-link to="/dashboard/project" tag="li">
-            <div class="li-container">
-              <div class="li-icon">
+            <div class="li-mobile"  @click="foldAction">
+              <div class="li-m-icon"> 
                 <svg
-                  width="30"
-                  height="30"
+                  width="25"
+                  height="25"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="#fff"
@@ -56,15 +61,15 @@
                   ></path>
                 </svg>
               </div>
-              <div class="li-text">Project</div>
+              <div class="li-m-text">Project</div>
             </div>
           </nuxt-link>
-          <nuxt-link to="/dashboard/employee" tag="li">
-            <div class="li-container">
-              <div class="li-icon">
+          <nuxt-link to="/dashboard/employee" tag="li" >
+            <div class="li-mobile"  @click="foldAction">
+              <div class="li-m-icon">
                 <svg
-                  width="30"
-                  height="30"
+                  width="25"
+                  height="25"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 640 512"
                   class="svg-inline--fa fa-user-plus fa-w-20 fa-3x"
@@ -76,15 +81,15 @@
                   ></path>
                 </svg>
               </div>
-              <div class="li-text">Employee</div>
+              <div class="li-m-text">Employee</div>
             </div>
           </nuxt-link>
           <nuxt-link to="/dashboard/task" tag="li">
-            <div class="li-container">
-              <div class="li-icon">
+            <div class="li-mobile"   @click="foldAction">
+              <div class="li-m-icon">
                <svg
-                  width="30"
-                  height="30"
+                  width="25"
+                  height="25"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 640 512"
                   class="svg-inline--fa fa-scroll fa-w-20 fa-3x"
@@ -96,15 +101,15 @@
                   ></path>
                 </svg>
               </div>
-              <div class="li-text">Task</div>
+              <div class="li-m-text">Task</div>
             </div>
           </nuxt-link>
           <nuxt-link to="/dashboard/todo" tag="li">
-            <div class="li-container">
-              <div class="li-icon">
+            <div class="li-mobile"   @click="foldAction">
+              <div class="li-m-icon" >
                 <svg
-                  width="30"
-                  height="30"
+                  width="25"
+                  height="25"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
                   class="svg-inline--fa fa-tasks fa-w-16 fa-3x"
@@ -116,17 +121,17 @@
                   ></path>
                 </svg>
               </div>
-              <div class="li-text">Todo</div>
+              <div class="li-m-text">Todo</div>
             </div>
           </nuxt-link>
           <nuxt-link to="/dashboard/stat" tag="li">
-            <div class="li-container">
-              <div class="li-icon">
+            <div class="li-mobile"  @click="foldAction">
+              <div class="li-m-icon">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="icon icon-tabler icon-tabler-activity"
-                  width="30"
-                  height="30"
+                  width="25"
+                  height="25"
                   viewBox="0 0 24 24"
                   stroke-width="1"
                   stroke="#fff"
@@ -138,15 +143,15 @@
                   <polyline points="21 12 17 12 14 20 10 4 7 12 3 12" />
                 </svg>
               </div>
-              <div class="li-text">Stat</div>
+              <div class="li-m-text">Stat</div>
             </div>
           </nuxt-link>
-          <nuxt-link to="/dashboard/settings" tag="li">
-            <div class="li-container">
-              <div class="li-icon">
+          <nuxt-link to="/dashboard/settings" tag="li"  >
+            <div class="li-mobile" @click="foldAction">
+              <div class="li-m-icon">
                 <svg
-                  width="30"
-                  height="30"
+                  width="25"
+                  height="25"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 640 512"
                   class="svg-inline--fa fa-users-cog fa-w-20 fa-9x"
@@ -158,17 +163,17 @@
                   />
                 </svg>
               </div>
-              <div class="li-text">Settings</div>
+              <div class="li-m-text">Settings</div>
             </div>
           </nuxt-link>
-          <li tag="li">
-            <div class="li-container">
-              <div class="li-icon">
+          <li tag="li"  @click="foldAction">
+            <div class="li-mobile">
+              <div class="li-m-icon" >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="icon icon-tabler icon-tabler-power"
-                  width="30"
-                  height="30"
+                  width="25"
+                  height="25"
                   viewBox="0 0 24 24"
                   stroke-width="1"
                   stroke="#fff"
@@ -181,18 +186,21 @@
                   <line x1="12" y1="4" x2="12" y2="12" />
                 </svg>
               </div>
-              <div class="li-text">logout</div>
+              <div class="li-m-text">logout</div>
             </div>
           </li>
         </ul>
-      </div>
-      <div class="sidetop_bottom"></div>
-    </div>
-    </div>
+</div>
 </template>
 <script>
 export default {
-  methods: {},
-  created() {}
-};
+    methods:{
+       foldAction(){
+                       this.$nuxt.$emit('fold-nav'); 
+                },
+        logOut(){
+          this.$nuxt.$emit('logout-user'); 
+        }
+    }
+}
 </script>

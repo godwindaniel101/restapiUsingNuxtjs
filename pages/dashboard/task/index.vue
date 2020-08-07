@@ -1,23 +1,13 @@
 <template>
-  <div class="preloaded_wrapper">
-    <div class="preloader_item" v-show="preloader">
-      <div class="image_wrap">
-        <img src="~assets/images/preloader.gif" />
-      </div>
-    </div>
-    <div class="other_contents" v-show="!preloader">
-      <div class="container-fluid">
-        <div class="wrap_my_form xydesx">
-          <div class="project_task_table">
+      <div class="container-fx">
             <!-- <button class="button btn btn-success"  @click="getTaskUnitProjectRecord"> Get My Task</button> -->
-            <table class="project_task_tracker">
+            <table class="table_template mg_t">
               <thead>
                 <tr>
-                  <th>Code</th>
+                  <th class="mb_table">Code</th>
                   <th>Task Name</th>
-                  <th>Asigned By</th>
-                  <!-- <th>Asigned To</th> -->
-                  <th>Assign Date</th>
+                  <th class="mb_table">Asigned By</th>
+                  <th class="mb_table">Assign Date</th>
                   <th>End Date</th>
                   <th>% Complete</th>
                   <th>Status</th>
@@ -28,18 +18,18 @@
 
               <tbody>
                 <tr v-for="data in taskData" :key="taskData.id">
-                  <td>
+                  <td class="mb_table">
                     <span>Code</span>
                   </td>
                   <td>
                     <span>{{ data.task_name }}</span>
                   </td>
-                  <td>
+                  <td class="mb_table">
                     <span>{{
                       data.assignby ? data.assignby.name : "assign_by"
                     }}</span>
                   </td>
-                  <td>
+                  <td class="mb_table">
                     <span>{{ data.start_date }}</span>
                   </td>
                   <td>
@@ -65,7 +55,7 @@
                         <nuxt-link
                           tag="div"
                           class="xsdcxfd"
-                          :to="{ path: '/panel/todo/' + data.id }"
+                          :to="{ path: '/dashboard/todo/' + data.id }"
                           v-if="data.task_status == 2"
                           >
                           <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-right fa-w-14 fa-3x"><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z" class=""></path></svg>
@@ -120,10 +110,6 @@
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 <script>
 import Employeeform from "~/components/FormsComponent/employeeForm.vue";
@@ -167,13 +153,14 @@ export default {
       } catch (e) {}
     },
     async getTaskUnitProjectRecord() {
+      this.$nuxt.$emit("changPreloader", true);
       try {
         await this.$axios
           .get("auth/getTaskUnitProjectRecord/")
           .then(({ data }) => {
             console.log(data);
             this.taskData = data;
-            // this.preloader = false;
+           this.$nuxt.$emit("changPreloader", false);
           });
       } catch (e) {}
     },

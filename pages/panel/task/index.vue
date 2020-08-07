@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="other_contents" v-show="!preloader">
-      <div class="container-fluid">
+      <div class="contianer-fx">
         <div class="wrap_my_form xydesx">
           <div class="project_task_table">
             <!-- <button class="button btn btn-success"  @click="getTaskUnitProjectRecord"> Get My Task</button> -->

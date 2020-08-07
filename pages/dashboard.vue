@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid" style="padding:0;margin:0;height:100vh;overflow:hidden">
+  <div class="container-fz">
       <Dashboard />
   </div>
 </template>

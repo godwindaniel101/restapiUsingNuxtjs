@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="contianer-fx">
         <h1 class="">
            User Dashboard
         </h1>

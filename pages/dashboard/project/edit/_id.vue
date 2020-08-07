@@ -1,13 +1,5 @@
 <template>
-<div class="outter">
-  <div class="preloader" v-show="preloader">
-    <div class="image_wrap">
-      <img src="~assets/images/preloader.gif" />
-    </div>           
-  </div>
-  <projectform :formRecord="form" :triggerEdit="true" v-show="!preloader" />
-</div>
-  
+  <projectform :formRecord="form" :triggerEdit="true"  />
 </template>
 <script>
 import Projectform from '~/components/FormsComponent/projectForm.vue'
@@ -15,7 +7,6 @@ export default {
   data() {
     return {
       form: {},
-      preloader: true
     };
   },
   components: {
@@ -23,13 +14,14 @@ export default {
   },
   methods: {
     async getProjectRecord() {
+      this.$nuxt.$emit("changPreloader", true);
       var id = this.$route.params.id;
       try {
         await this.$axios
           .get("auth/getProjectRecord/" + id)
           .then(({ data }) => {
             this.form = data;
-            this.preloader = false;
+            this.$nuxt.$emit("changPreloader", false);
           });
       } catch (e) {}
     }

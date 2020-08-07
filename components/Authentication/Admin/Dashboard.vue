@@ -1,9 +1,13 @@
 <template>
   
     <div class="dasboard_container">
-        <div class="dashboard_sidecontent" :class="foldMode ? 'fold_class' : ''">
+        <div class="dashboard_sidecontent">
             <navside />
         </div>
+         <div class="dashboard_mobilecontent" :class="foldMode ?'dashboard_mobilecontent_show':''">  
+               <div class="cover_back" @click="foldNav"></div>
+            <mobileside  />
+        </div> 
         <div class="dashboard_maincontent">
             <navcenter />
         </div>
@@ -12,14 +16,16 @@
 <script>
 import Navside from './Navside'
 import Navcenter from './Navcenter'
+import Mobileside from './Mobileside'
 export default {
 components:{
     Navside,
-    Navcenter
+    Navcenter,
+    Mobileside,
 },
 data(){
 return{
-    foldMode:true,
+    foldMode:false,
 }
 },
     middleware:'auth',
@@ -31,7 +37,7 @@ return{
     },
     foldNav(){
         this.foldMode = !this.foldMode
-        }
+        },
     },
     created(){
        this.$nuxt.$on('logout-user', () => {

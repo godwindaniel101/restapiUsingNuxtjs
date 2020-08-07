@@ -1,12 +1,14 @@
 <template>
-  <div class="div">
-    stat
-  </div>
+  <inprogress />
 </template>
 <script>
-// import Index from '~/components/StatComponent/index.vue'
+import Inprogress from '~/components/Authentication/Progress.vue'
 export default {
   components:{
+    Inprogress
+  },
+  mounted(){
+    this.$nuxt.$emit("changPreloader", false);
   }
 }
 </script>

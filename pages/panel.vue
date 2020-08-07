@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid" style="padding:0;margin:0;height:100vh;overflow:hidden">
+  <div class="contianer-fx" style="padding:0;margin:0;height:100vh;overflow:hidden">
       <Panel />
   </div>
 </template>

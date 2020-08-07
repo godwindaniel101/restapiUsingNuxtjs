@@ -55,7 +55,7 @@ export default {
         if(user_id == 3){
             this.$router.push({ name: "dashboard" });
         }else{
-          this.$router.push({ name: "panel" });
+          this.$router.push({ name: "dashboard" });
         }
       } catch (e) {}
     }

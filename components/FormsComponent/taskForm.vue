@@ -1,15 +1,30 @@
 <template>
-  <div class="preloaded_wrapper">
-    <div class="preloader_item" v-show="preloader">
-      <div class="image_wrap">
-        <img src="~assets/images/preloader.gif" />
+      <div class="container-fx">
+          <div class="_sub_project">
+      <nuxt-link :to="new_task ?'/dashboard/project':'/dashboard/project/'+form.project_id" class="back_icon" tag="div">
+        <div class="_back_nav">
+          <div style="auto 20px">
+            <svg
+              width="20"
+              height="20"
+              stroke-width="1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              class="svg-inline--fa fa-arrow-left fa-w-14 fa-3x"
+            >
+              <path
+                fill="#000"
+                d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"
+              />
+            </svg>
+          </div>
+        </div>
+      </nuxt-link>
+      <div class="_back_nav_text">
+        <span>{{triggerEdit ? 'Edit Task' : 'Create Task'}}</span>
       </div>
     </div>
-    <div class="other_contents" v-show="!preloader">
-      <div class="container-fluid" style="padding:0;">
-        <div class="row">
-          <div class="col-lg-10 offset-lg-1 wrap_my_form">
-            <div class="employee_header">
+            <!-- <div class="employee_header">
               <div class="back_nav">
                 <nuxt-link to="/dashboard/project/">
                   <svg
@@ -30,10 +45,10 @@
               <div class="tag-wrapper">
                 <p class @click="getEmployee">{{ triggerEdit ? "Edit Task" : "Create Task" }}</p>
               </div>
-            </div>
-            <form @submit.prevent="triggerEdit ? updateTask() : createTask()">
-              <div class="col-lg-12 form_wrapper_unit" id="style-2">
-                <div class="refresh_class">
+            </div> -->
+            <form @submit.prevent="triggerEdit ? updateTask() : createTask()"  class="_form_wrap">
+              <div class="_form_content">
+                <!-- <div class="refresh_class">
                   <svg
                     @click="triggerEdit ? restoreForm() : resetForm()"
                     width="25"
@@ -49,16 +64,15 @@
                       class
                     />
                   </svg>
-                </div>
-                <div class="row">
-                  <div class="col-lg-6 zero_class">
-                    <div class="form_navigator">
+                </div> -->
+                <div class="_form_row">
+                    <div class="_form_navigator">
                       <label for="name">
                         <span class="hash_red">*</span>Project Name
                       </label>
                       <select
                         v-model="form.project_id"
-                        class="form-case"
+                        class="_form_case"
                         @click="error.project_id = ''"
                       >
                         <option value>~Select~</option>
@@ -69,38 +83,28 @@
                           :key="projects.id"
                         >{{ data.project_name }}</option>
                       </select>
-                      <span v-text="error.project_id"></span>
+                      <span  class="_form_error" v-text="error.project_id"></span>
                     </div>
-                  </div>
-                  <div class="col-lg-6 zero_class">
-                    <div class="form_navigator">
+                    <div class="_form_navigator">
                       <label for="name">
                         <span class="hash_red">*</span>Task Name
                       </label>
                       <input
                         type="text"
-                        class="form-case"
+                        class="_form_case"
                         v-model="form.task_name"
                         @click="error.task_name = ''"
                         :class="{ 'is-invalid': errors.email }"
                       />
-                      <span v-text="error.task_name"></span>
-                      <span class="error_text" v-if="errors.task_name">
-                        <span class="hash_red">*</span>
-                        {{ errors.task_name[0] }}
-                      </span>
-                      <span v-text="error.task_name"></span>
+                      <span  class="_form_error" v-text="error.task_name"></span>
                     </div>
-                  </div>
-
-                  <div class="col-lg-6 zero_class">
-                    <div class="form_navigator">
+                    <div class="_form_navigator">
                       <label for="name">
                         <span class="hash_red">*</span>Assign To
                       </label>
                       <select
                         v-model="form.assiged_to"
-                        class="form-case"
+                        class="_form_case"
                         @click="error.assiged_to = ''"
                       >
                         <option value>~Select~</option>
@@ -111,17 +115,15 @@
                           :key="employees.id"
                         >{{data.first_name}}</option>
                       </select>
-                      <span v-text="error.assiged_to"></span>
+                      <span class="_form_error"  v-text="error.assiged_to"></span>
                     </div>
-                  </div>
-                  <div class="col-lg-6 zero_class">
-                    <div class="form_navigator">
+                    <div class="_form_navigator">
                       <label for="name">
                         <span class="hash_red">*</span>Task Priority
                       </label>
                       <select
                         v-model="form.task_priority"
-                        class="form-case"
+                        class="_form_case"
                         @click="error.task_priority = ''"
                       >
                         <option value>~Select~</option>
@@ -130,65 +132,54 @@
                         <option value="3">Major</option>
                         <option value="4">Dangerous</option>
                       </select>
-                      <span v-text="error.task_priority"></span>
+                      <span  class="_form_error" v-text="error.task_priority"></span>
                     </div>
-                  </div>
-                  <div class="col-lg-6 zero_class">
-                    <div class="form_navigator">
+                    <div class="_form_navigator">
                       <label for="name">
                         <span class="hash_red">*</span>Start Date
                       </label>
                       <input
                         type="date"
-                        class="form-case"
+                        class="_form_case"
                         v-model="form.start_date"
                         @change="error.start_date = ''"
                       />
-                      <span v-text="error.start_date"></span>
+                      <span  class="_form_error" v-text="error.start_date"></span>
                     </div>
-                  </div>
-                  <div class="col-lg-6 zero_class">
-                    <div class="form_navigator">
+                    <div class="_form_navigator">
                       <label for="name">
                         <span class="hash_red">*</span>End Date
                       </label>
                       <input
                         type="date"
-                        class="form-case"
+                        class="_form_case"
                         v-model="form.end_date"
                         @change="error.end_date = ''"
                       />
-                      <span v-text="error.end_date"></span>
+                      <span  class="_form_error" v-text="error.end_date"></span>
+                    </div>
+                </div>
+                <div class="_form_row">
+                    <div class="_form_navigator">
+                       <label for="name">
+                        <span class="hash_red">*</span>Description
+                      </label>
+                      <textarea name id class=" _form_case" v-model="form.task_description"></textarea>
+                      <span  class="_form_error" v-text="error.task_description"></span>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="form_navigator">
-                      <label for class>Task Description</label>
-                      <textarea name id class="project_textarea" v-model="form.task_description"></textarea>
-                      <span v-text="error.task_description"></span>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-6 zero_class">
+                <div class="_btn_row">
                     <!-- <label for="name"><span class="hash_red">*</span>helllo</label>  -->
-                    <div class="form_navigator" v-show="triggerEdit">
-                      <input type="submit" class="form-case btn-primary" placeholder="Update" />
+                    <div class="_form_controller" v-show="triggerEdit">
+                      <button type="submit" class="_form_btn b_green" placeholder="Update" >Update</button>
                     </div>
-                    <div class="form_navigator" v-show="!triggerEdit">
-                      <input type="submit" class="form-case btn-success" placeholder="Create" />
+                    <div class="_form_controller" v-show="!triggerEdit">
+                      <button type="submit" class="_form_btn b_green" placeholder="Create" >Create</button>
                     </div>
-                  </div>
                 </div>
               </div>
             </form>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 <script>
 export default {
@@ -203,6 +194,7 @@ export default {
   },
   data() {
     return {
+      new_task:false,
       employees: [],
       projects: [],
       preloader: true,

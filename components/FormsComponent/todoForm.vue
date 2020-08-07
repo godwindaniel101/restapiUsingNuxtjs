@@ -1,28 +1,38 @@
 <template>
-  <div class="container-fluid">
+  <div class="contianer-fx">
     <div class="row">
       <div class="col-lg-6 offset-lg-3">
         <div class="todo_wrap">
-          <div class="employee_header" style="padding-left:0;padding-right:0;">
-            <div class="back_nav">
-              <nuxt-link to="/panel/task" v-if="task_status">
-                <svg
-                  width="30"
-                  height="30"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 448 512"
-                  class="svg-inline--fa fa-arrow-left fa-w-14 fa-3x"
-                >
-                  <path
-                    fill="#000"
-                    d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"
-                    class=""
-                  ></path>
-                </svg>
-              </nuxt-link>
-            </div>
-            <div class="tag-wrapper">
-              <p class="">{{ taskName != null ? taskName : "My" }} Todo</p>
+          <div class="_sub_project">
+            <nuxt-link
+              to="/dashboard/task"
+              v-if="task_status"
+              tag="div"
+              style="auto 20px"
+              class="back_icon"
+            >
+              <div class="_back_nav">
+                <div style="auto 20px">
+                  <svg
+                    width="20"
+                    height="20"
+                    stroke-width="1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                    class="svg-inline--fa fa-arrow-left fa-w-14 fa-3x"
+                  >
+                    <path
+                      fill="#000"
+                      d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </nuxt-link>
+            <div class="_back_nav_text">
+              <span class=""
+                >{{ taskName != null ? taskName : "My" }} Todo</span
+              >
             </div>
           </div>
           <div class="todo_div">
@@ -71,7 +81,8 @@
                   </td>
                   <td>
                     <div class="todo_table_icon">
-                      <svg @click="deleteAllTodo"
+                      <svg
+                        @click="deleteAllTodo"
                         width="20"
                         height="20"
                         xmlns="http://www.w3.org/2000/svg"
@@ -131,23 +142,22 @@
 </template>
 <script>
 export default {
-    props:{
-         triggerHome:{
-        type:Boolean,
-        default:false,
+  props: {
+    triggerHome: {
+      type: Boolean,
+      default: false
     }
-    },
+  },
   data() {
     return {
-
-      task_status :false,
-      tableLoader:false,
-      taskName:'',
+      task_status: false,
+      tableLoader: false,
+      taskName: "",
       todoArray: [],
-      text_error:"",
+      text_error: "",
       form: {
         todo_text: "",
-        all_task:false,
+        all_task: false
       },
       triggerEdit: false
     };
@@ -155,17 +165,46 @@ export default {
   components: {},
   methods: {
     async addTodo() {
-     try { if(this.form.todo_text == "" || this.form.todo_text == null){
-        this.text_error = "*Fill"
-      }else{
-      var id = this.$route.params.id ? this.$route.params.id : "";
+      try {
+        if (this.form.todo_text == "" || this.form.todo_text == null) {
+          this.text_error = "*Fill";
+        } else {
+          var id = this.$route.params.id ? this.$route.params.id : "";
 
+          await this.$axios
+
+            .post("/auth/addTodo/" + id, this.form)
+            .then(({ data }) => {
+              this.getTodo();
+              this.form.todo_text = "";
+              this.$swal({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                icon: "success",
+                title: data.message
+              });
+            });
+        }
+      } catch (e) {}
+    },
+    async getTodo() {
+      try {
+        var id = this.$route.params.id ? this.$route.params.id : "";
+
+        await this.$axios.get("/auth/getTodo/" + id).then(({ data }) => {
+          this.todoArray = data;
+          this.tableLoader = true;
+        });
+      } catch (e) {}
+    },
+    async completeTodo(id) {
+      try {
         await this.$axios
-
-          .post("/auth/addTodo/" + id, this.form)
+          .post("/auth/completeTodo/" + id, this.form)
           .then(({ data }) => {
-            this.getTodo()
-            this.form.todo_text = "";
             this.$swal({
               toast: true,
               position: "top-end",
@@ -176,35 +215,9 @@ export default {
               title: data.message
             });
           });
-      }
-      }
-      catch (e) {}
+      } catch (e) {}
     },
-   async getTodo() {
-    try { var id = this.$route.params.id ? this.$route.params.id : "";
-        
-      await this.$axios.get("/auth/getTodo/" + id).then(({ data }) => {
-        this.todoArray = data;
-        this.tableLoader=true;
-      });
-    } catch (e) {}
-   },
-   async completeTodo(id) {
-    try {
-      await this.$axios.post("/auth/completeTodo/" + id, this.form).then(({ data }) => {
-        this.$swal({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          icon: "success",
-          title: data.message
-        });
-      });
-    } catch (e) {}
-   },
-   completeAllTodo() {
+    completeAllTodo() {
       this.$swal({
         customClass: {
           confirmButton: "btn btn-danger",
@@ -212,48 +225,53 @@ export default {
         },
         buttonsStyling: false,
         title: "Are you sure?",
-        text:  this.form.all_task ? 'Are you done with your task ?' : 'You want to Restart your task ?',
+        text: this.form.all_task
+          ? "Are you done with your task ?"
+          : "You want to Restart your task ?",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: this.form.all_task ? 'Yes, I am done' : 'Yes, Restart ',
+        confirmButtonText: this.form.all_task
+          ? "Yes, I am done"
+          : "Yes, Restart ",
         cancelButtonText: "No, cancel!",
         reverseButtons: true
       }).then(result => {
         if (result.value) {
-         try { var id = this.$route.params.id ? this.$route.params.id : "";
-                      var  data = this.todoArray;
-                      var c = data.length;
-                      for(let i=0 ; i < c ; ++i) {
-                        this.todoArray[i].is_completed = this.form.all_task;
-                      }
-                     this.$axios.post("/auth/completeAllTodo/"+id,this.form).then(({ data }) => {
-                       
-                      this.$swal({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        icon: "success",
-                        title: data.message
-                      });
-                    });
-        } catch (e) {}
-        }else{
-          this.form.all_task = !this.form.all_task
+          try {
+            var id = this.$route.params.id ? this.$route.params.id : "";
+            var data = this.todoArray;
+            var c = data.length;
+            for (let i = 0; i < c; ++i) {
+              this.todoArray[i].is_completed = this.form.all_task;
+            }
+            this.$axios
+              .post("/auth/completeAllTodo/" + id, this.form)
+              .then(({ data }) => {
+                this.$swal({
+                  toast: true,
+                  position: "top-end",
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  icon: "success",
+                  title: data.message
+                });
+              });
+          } catch (e) {}
+        } else {
+          this.form.all_task = !this.form.all_task;
         }
       });
-
-   },
+    },
     deleteAllTodo() {
-           this.$swal({
+      this.$swal({
         customClass: {
           confirmButton: "btn btn-danger",
           cancelButton: "btn btn-success"
         },
         buttonsStyling: false,
         title: "Are you sure?",
-        text: 'You cant revert this',
+        text: "You cant revert this",
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Yes, delete it!",
@@ -261,21 +279,21 @@ export default {
         reverseButtons: true
       }).then(result => {
         if (result.value) {
-        var id = this.$route.params.id ? this.$route.params.id : "";
-       try {
-       this.$axios.delete("/auth/deleteAllTodo/" + id).then(({ data }) => {
-         this.getTodo()
-        this.$swal({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          icon: "success",
-          title: data.message
-        });
-      });
-    } catch (e) {}
+          var id = this.$route.params.id ? this.$route.params.id : "";
+          try {
+            this.$axios.delete("/auth/deleteAllTodo/" + id).then(({ data }) => {
+              this.getTodo();
+              this.$swal({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                icon: "success",
+                title: data.message
+              });
+            });
+          } catch (e) {}
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           swalWithBootstrapButtons.fire(
             "Cancelled",
@@ -284,40 +302,41 @@ export default {
           );
         }
       });
-
-
-   },
-   async deleteTodo(id) {
-    try {
-      await this.$axios.delete("/auth/deleteTodo/" + id).then(({ data }) => {
-         this.getTodo()
-        this.$swal({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          icon: "success",
-          title: data.message
+    },
+    async deleteTodo(id) {
+      try {
+        await this.$axios.delete("/auth/deleteTodo/" + id).then(({ data }) => {
+          this.getTodo();
+          this.$swal({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            icon: "success",
+            title: data.message
+          });
         });
-      });
-    } catch (e) {}
-   },
-   getTaskName(){
-    try {  var id = this.$route.params.id ? this.$route.params.id : "";
-     if(id == null || id === ""){
-       return
-     }
-     this.task_status = true;
-     this.$axios.get("/auth/getTaskName/" + id).then(({ data }) => {
-        this.taskName = data
-      });
-    } catch (e) {}
-   }
-},
-  mounted(){
-    this.getTodo()
-    this.getTaskName()
+      } catch (e) {}
+    },
+    getTaskName() {
+      try {
+        var id = this.$route.params.id ? this.$route.params.id : "";
+        if (id == null || id === "") {
+          return;
+        }
+        this.task_status = true;
+        this.$axios.get("/auth/getTaskName/" + id).then(({ data }) => {
+          this.taskName = data;
+        });
+      } catch (e) {}
+    }
+  },
+  mounted() {
+    this.$nuxt.$emit("changPreloader", true);
+    this.getTodo();
+    this.getTaskName();
+    this.$nuxt.$emit("changPreloader", false);
   }
 };
 </script>
